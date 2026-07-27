@@ -9,11 +9,7 @@ export default function RegisterRolePage() {
 
   const selectRole = (role: string) => {
     localStorage.setItem("rigpel_role", role);
-    if (role === "client") {
-      router.push("/client/dashboard");
-    } else {
-      router.push("/worker/dashboard");
-    }
+    router.push("/register/details");
   };
 
   return (
