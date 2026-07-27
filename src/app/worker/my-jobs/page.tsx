@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { CheckCircle, Clock, XCircle, Phone as PhoneIcon, CreditCard, ChevronDown, ChevronUp } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const myJobs = [
   { id: "1", title: "Delivery Rider", status: "pending", applied: "2 days ago", employer: "Tashi Store", contact: null, qr: null },
@@ -19,6 +20,7 @@ const statusConfig: Record<string, { label: string; color: string; bg: string; i
 };
 
 export default function MyJobsPage() {
+  usePageTitle("My Jobs");
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (

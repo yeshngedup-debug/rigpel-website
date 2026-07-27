@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, MapPin, Clock, DollarSign, Briefcase, Check, Loader2 } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function GigDetailPage() {
+  usePageTitle("Gig Details");
   const params = useParams();
   const router = useRouter();
   const [applied, setApplied] = useState(false);

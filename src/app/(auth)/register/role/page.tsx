@@ -3,8 +3,10 @@
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Briefcase, Search } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function RegisterRolePage() {
+  usePageTitle("Choose Your Role");
   const router = useRouter();
 
   const selectRole = (role: string) => {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, X, AlertTriangle, Eye } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const mockJobs = [
   { id: "1", title: "Delivery Rider", employer: "Tashi Dorji", posted: "2 hours ago", status: "pending" as const },
@@ -19,6 +20,7 @@ const statusConfig = {
 };
 
 export default function ModerationPage() {
+  usePageTitle("Moderation");
   const [filter, setFilter] = useState("all");
   const [jobs, setJobs] = useState(mockJobs);
 

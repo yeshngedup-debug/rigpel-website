@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Users, Briefcase, DollarSign, TrendingUp, AlertTriangle } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const chartData = [
   { name: "Mon", jobs: 4, applicants: 12 }, { name: "Tue", jobs: 7, applicants: 18 },
@@ -17,6 +19,10 @@ const recentReports = [
 ];
 
 export default function AdminDashboardPage() {
+  usePageTitle("Admin Dashboard");
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => { setIsClient(true); }, []);
+  if (!isClient) return null;
   return (
     <div className="p-6 md:p-8 max-w-6xl mx-auto">
       <div className="mb-8">

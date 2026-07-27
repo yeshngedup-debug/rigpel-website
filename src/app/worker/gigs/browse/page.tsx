@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Search as SearchIcon, MapPin, Clock, DollarSign, Filter, Briefcase } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const gigs = [
   { id: "1", title: "Delivery Rider", category: "Service", location: "Thimphu", pay: "Nu 500/day", duration: "1 week", posted: "2 hours ago", urgent: true },
@@ -14,6 +15,7 @@ const gigs = [
 ];
 
 export default function BrowseGigsPage() {
+  usePageTitle("Browse Gigs");
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const filtered = gigs.filter(

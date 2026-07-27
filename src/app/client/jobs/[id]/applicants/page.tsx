@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Star, Phone, CreditCard, Check } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const mockApplicants = [
   { id: "w1", name: "Tashi Dorji", rating: 4.8, jobsCompleted: 12, skills: ["Driving", "Punctual", "Reliable"], phone: "+975-77-123456", cidVerified: true, bankQR: "mBoB QR" },
@@ -11,6 +12,7 @@ const mockApplicants = [
 ];
 
 export default function ApplicantsPage() {
+  usePageTitle("Applicants");
   const [selected, setSelected] = useState<string | null>(null);
   const [contactUnlocked, setContactUnlocked] = useState<string | null>(null);
   const router = useRouter();

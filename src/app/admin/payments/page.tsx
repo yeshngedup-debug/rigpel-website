@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Search, Check, X, Eye, DollarSign } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const mockPayments = [
   { id: "1", job: "Delivery Rider", worker: "Tashi Dorji", employer: "Tashi Store", amount: "Nu 3,500", status: "pending" as const, date: "2 days ago", screenshot: "screenshot_1.jpg" },
@@ -17,6 +18,7 @@ const statusConfig = {
 };
 
 export default function PaymentsPage() {
+  usePageTitle("Payments");
   const [filter, setFilter] = useState("all");
   const [payments, setPayments] = useState(mockPayments);
   const [screenshot, setScreenshot] = useState<string | null>(null);

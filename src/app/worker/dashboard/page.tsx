@@ -2,8 +2,10 @@
 
 import { Search, TrendingUp, CheckCircle, Clock, Star } from "lucide-react";
 import Link from "next/link";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function WorkerDashboardPage() {
+  usePageTitle("Worker Dashboard");
   return (
     <div className="p-6 md:p-8 max-w-5xl mx-auto">
       <div className="mb-8">

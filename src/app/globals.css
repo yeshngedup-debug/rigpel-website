@@ -90,6 +90,10 @@ html {
   scroll-behavior: smooth;
 }
 
+h1, h2, h3, .heading-display {
+  text-wrap: balance;
+}
+
 .apple-pill {
   display: inline-flex;
   align-items: center;
@@ -129,7 +133,7 @@ html {
 
 .card-lift:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
   border-color: #D2D2D7;
 }
 

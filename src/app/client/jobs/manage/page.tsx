@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Users } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const mockJobs = [
   { id: "1", title: "Delivery Rider", applicants: 3, status: "open", type: "Service", location: "Thimphu", pay: "Nu 500/day", posted: "2 days ago" },
@@ -20,6 +21,7 @@ const statusColors: Record<string, string> = {
 };
 
 export default function ManageJobsPage() {
+  usePageTitle("Manage Jobs");
   const [filter, setFilter] = useState("all");
   const filtered = filter === "all" ? mockJobs : mockJobs.filter((j) => j.status === filter);
 

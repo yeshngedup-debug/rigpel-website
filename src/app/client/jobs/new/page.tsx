@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Plus, X, Loader2, Check } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function PostJobPage() {
+  usePageTitle("Post a Job");
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);

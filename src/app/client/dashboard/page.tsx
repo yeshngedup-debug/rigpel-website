@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { Briefcase, Users, TrendingUp, Clock, ChevronRight, Plus } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function ClientDashboardPage() {
+  usePageTitle("Employer Dashboard");
   return (
     <div className="p-6 md:p-8 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">

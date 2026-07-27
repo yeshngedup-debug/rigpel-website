@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Search, Shield, ShieldOff, Check, X } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const mockUsers = [
   { id: "1", name: "Tashi Dorji", phone: "+975-77-123456", role: "worker", cidVerified: true, status: "active" as const },
@@ -12,6 +13,7 @@ const mockUsers = [
 ];
 
 export default function UsersPage() {
+  usePageTitle("User Management");
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState(mockUsers);
 

@@ -4,10 +4,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, Phone, Loader2 } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const PHONE_REGEX = /^\+975-\d{2}-\d{6}$/;
 
 export default function LoginPage() {
+  usePageTitle("Sign In");
   const [phone, setPhone] = useState("+975-");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);

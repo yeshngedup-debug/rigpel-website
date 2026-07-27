@@ -4,10 +4,12 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Loader2 } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const RESEND_COOLDOWN = 30;
 
 export default function VerifyOTPPage() {
+  usePageTitle("Verify Phone");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [loading, setLoading] = useState(false);
   const [cooldown, setCooldown] = useState(0);

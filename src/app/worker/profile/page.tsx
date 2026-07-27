@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { User, Upload, Check, Camera, CreditCard } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export default function WorkerProfilePage() {
+  usePageTitle("My Profile");
   const [cidUploaded, setCidUploaded] = useState(false);
   const [bankUploaded, setBankUploaded] = useState(false);
 
