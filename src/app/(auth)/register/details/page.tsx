@@ -107,7 +107,7 @@ export default function RegisterDetailsPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="bg-white rounded-2xl border border-border p-6 space-y-5">
               <div>
-                <label htmlFor="full_name" className="text-[13px] font-medium text-foreground/70 block mb-1.5">
+                <label htmlFor="full_name" className="text-[14px] font-semibold text-foreground block mb-1.5">
                   Full Name
                 </label>
                 <input
@@ -123,7 +123,7 @@ export default function RegisterDetailsPage() {
               </div>
 
               <div>
-                <label htmlFor="phone" className="text-[13px] font-medium text-foreground/70 block mb-1.5">
+                <label htmlFor="phone" className="text-[14px] font-semibold text-foreground block mb-1.5">
                   Phone Number
                 </label>
                 <div className="flex items-center gap-0 rounded-xl border border-border bg-white overflow-hidden focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/20 transition-all">
@@ -145,7 +145,7 @@ export default function RegisterDetailsPage() {
               </div>
 
               <div>
-                <label htmlFor="cid_number" className="text-[13px] font-medium text-foreground/70 block mb-1.5">
+                <label htmlFor="cid_number" className="text-[14px] font-semibold text-foreground block mb-1.5">
                   CID Number
                 </label>
                 <input
