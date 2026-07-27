@@ -14,10 +14,10 @@ const mockJobs = [
 ];
 
 const statusColors: Record<string, string> = {
-  open: "text-[#6D46FF] bg-[#6D46FF]/10",
-  in_progress: "text-[#FF9500] bg-[#FF9500]/10",
-  filled: "text-[#34C759] bg-[#34C759]/10",
-  cancelled: "text-[#FF3B30] bg-[#FF3B30]/10",
+  open: "text-white bg-[#6D46FF]",
+  in_progress: "text-white bg-[#FF9500]",
+  filled: "text-white bg-[#34C759]",
+  cancelled: "text-white bg-[#FF3B30]",
 };
 
 export default function ManageJobsPage() {
@@ -44,7 +44,7 @@ export default function ManageJobsPage() {
       </div>
 
       <div className="bg-white rounded-2xl border border-border overflow-hidden">
-        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-background border-b border-border text-[13px] font-medium text-muted-foreground uppercase tracking-wider">
+        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-background border-b border-border text-[13px] font-medium text-foreground/50 uppercase tracking-wider">
           <div className="col-span-4">Job</div><div className="col-span-2">Status</div><div className="col-span-2">Applicants</div><div className="col-span-2">Pay</div><div className="col-span-2">Actions</div>
         </div>
         <div className="divide-y divide-border">

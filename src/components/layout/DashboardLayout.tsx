@@ -63,7 +63,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                 key={item.href}
                 href={href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] transition-colors ${
-                  isActive ? "bg-brand-subtle text-primary font-medium" : "text-muted-foreground hover:bg-secondary"
+                  isActive ? "bg-brand-subtle text-[#4A2BBF] font-medium" : "text-muted-foreground hover:bg-secondary"
                 }`}
               >
                 <item.icon className="size-5" />
@@ -74,7 +74,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         </nav>
         <div className="p-4 border-t border-border shrink-0">
           <div className="flex items-center gap-3 px-4 py-3">
-            <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-[16px]">
+            <div className="size-10 rounded-full bg-[#4A2BBF] flex items-center justify-center text-white font-bold text-[16px]">
               {profile?.full_name?.charAt(0) || "U"}
             </div>
             <div className="flex-1 min-w-0">

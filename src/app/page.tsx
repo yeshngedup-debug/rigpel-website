@@ -25,7 +25,7 @@ export default function LandingPage() {
           <header className="h-16 flex items-center justify-between px-8 max-w-[1440px] mx-auto w-full">
             <span className="text-[17px] font-bold tracking-[0.15em] text-white">RIGPEL</span>
             <div className="flex items-center gap-4">
-              <Link href="/login" className="text-[14px] text-white/70 hover:text-white transition-colors min-h-[44px] inline-flex items-center">
+              <Link href="/login" className="text-[14px] text-white/80 hover:text-white transition-colors min-h-[44px] inline-flex items-center">
                 Sign In
               </Link>
               <Link
@@ -43,7 +43,7 @@ export default function LandingPage() {
                 BHUTAN'S JOB MARKETPLACE
               </span>
               <LandingHeroAnimation />
-              <p className="text-white/70 text-[19px] md:text-[21px] leading-[1.6] max-w-[700px] mx-auto mb-10">
+              <p className="text-white/85 text-[19px] md:text-[21px] leading-[1.6] max-w-[700px] mx-auto mb-10">
                 The trusted platform connecting Bhutanese workers with part-time jobs.
                 Verified profiles, direct payments, zero commission.
               </p>
@@ -179,9 +179,9 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[13px] text-muted-foreground">
             <span className="font-semibold tracking-tight text-foreground text-[14px]">RIGPEL</span>
             <div className="flex items-center gap-8">
-              <span className="hover:text-foreground transition-colors cursor-pointer">Privacy Policy</span>
-              <span className="hover:text-foreground transition-colors cursor-pointer">Terms of Use</span>
-              <span className="hover:text-foreground transition-colors cursor-pointer">Contact</span>
+              <Link href="/privacy" className="hover:text-foreground transition-colors min-h-[44px] inline-flex items-center">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-foreground transition-colors min-h-[44px] inline-flex items-center">Terms of Use</Link>
+              <span className="hover:text-foreground transition-colors cursor-pointer min-h-[44px] inline-flex items-center">Contact</span>
             </div>
             <div>&copy; {new Date().getFullYear()} RIGPEL</div>
           </div>

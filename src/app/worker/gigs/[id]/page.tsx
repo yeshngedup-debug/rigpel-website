@@ -87,13 +87,13 @@ export default function GigDetailPage() {
               <div>
                 <h2 className="text-[16px] font-semibold text-foreground mb-3">Duties</h2>
                 <ul className="space-y-2">
-                  {gig.duties.map((d, i) => <li key={i} className="flex items-start gap-2 text-[14px] text-muted-foreground"><Check className="size-4 text-primary mt-0.5 shrink-0" /> {d}</li>)}
+                  {gig.duties.map((d, i) => <li key={i} className="flex items-start gap-2 text-[14px] text-foreground/70"><Check className="size-4 text-primary mt-0.5 shrink-0" /> {d}</li>)}
                 </ul>
               </div>
               <div>
                 <h2 className="text-[16px] font-semibold text-foreground mb-3">Requirements</h2>
                 <ul className="space-y-2">
-                  {gig.requirements.map((r, i) => <li key={i} className="flex items-start gap-2 text-[14px] text-muted-foreground"><span className="size-1.5 rounded-full bg-primary mt-2 shrink-0" /> {r}</li>)}
+                  {gig.requirements.map((r, i) => <li key={i} className="flex items-start gap-2 text-[14px] text-foreground/70"><span className="size-1.5 rounded-full bg-primary mt-2 shrink-0" /> {r}</li>)}
                 </ul>
               </div>
             </div>

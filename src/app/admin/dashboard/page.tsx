@@ -53,8 +53,8 @@ export default function AdminDashboardPage() {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis dataKey="name" tick={{ fontSize: 12, fill: "#8E8E93" }} axisLine={false} />
-              <YAxis tick={{ fontSize: 12, fill: "#8E8E93" }} axisLine={false} />
+              <XAxis dataKey="name" tick={{ fontSize: 12, fill: "#6B6B70" }} axisLine={false} />
+              <YAxis tick={{ fontSize: 12, fill: "#6B6B70" }} axisLine={false} />
               <Tooltip contentStyle={{ borderRadius: 16, border: "1px solid var(--border)", boxShadow: "0 4px 16px rgba(0,0,0,0.08)" }} />
               <Bar dataKey="jobs" fill="var(--primary)" radius={[6, 6, 0, 0]} />
               <Bar dataKey="applicants" fill="#5856D6" radius={[6, 6, 0, 0]} />

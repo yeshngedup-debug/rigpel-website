@@ -13,10 +13,10 @@ const mockJobs = [
 ];
 
 const statusConfig = {
-  pending: { label: "Pending", color: "text-[#FF9500]", bg: "bg-[#FF9500]/10" },
-  approved: { label: "Approved", color: "text-[#34C759]", bg: "bg-[#34C759]/10" },
-  rejected: { label: "Rejected", color: "text-[#FF3B30]", bg: "bg-[#FF3B30]/10" },
-  flagged: { label: "Flagged", color: "text-destructive", bg: "bg-destructive/10" },
+  pending: { label: "Pending", color: "text-white", bg: "bg-[#FF9500]" },
+  approved: { label: "Approved", color: "text-white", bg: "bg-[#34C759]" },
+  rejected: { label: "Rejected", color: "text-white", bg: "bg-[#FF3B30]" },
+  flagged: { label: "Flagged", color: "text-white", bg: "bg-[#FF3B30]" },
 };
 
 export default function ModerationPage() {
@@ -48,7 +48,7 @@ export default function ModerationPage() {
       <div className="overflow-x-auto rounded-2xl border border-border">
         <table className="table">
           <thead>
-            <tr className="bg-background text-[13px] font-medium text-muted-foreground uppercase tracking-wider">
+            <tr className="bg-background text-[13px] font-medium text-foreground/50 uppercase tracking-wider">
               <th>Job</th><th>Employer</th><th>Posted</th><th>Status</th><th>Actions</th>
             </tr>
           </thead>
@@ -65,8 +65,8 @@ export default function ModerationPage() {
                     <div className="flex items-center gap-2">
                       {job.status === "pending" || job.status === "flagged" ? (
                         <>
-                          <button onClick={() => updateStatus(job.id, "approved")} className="btn btn-success btn-sm text-white gap-1.5"><Check className="size-4" /> Approve</button>
-                          <button onClick={() => updateStatus(job.id, "rejected")} className="btn btn-error btn-sm text-white gap-1.5"><X className="size-4" /> Reject</button>
+                          <button onClick={() => updateStatus(job.id, "approved")} className="px-3 py-1.5 bg-[#1E7E34] text-white rounded-lg text-[13px] font-medium hover:bg-[#16632A] transition-colors flex items-center gap-1.5"><Check className="size-4" /> Approve</button>
+                          <button onClick={() => updateStatus(job.id, "rejected")} className="px-3 py-1.5 bg-[#C41A1A] text-white rounded-lg text-[13px] font-medium hover:bg-[#A31515] transition-colors flex items-center gap-1.5"><X className="size-4" /> Reject</button>
                           {job.status === "flagged" && <button className="btn btn-ghost btn-sm"><Eye className="size-4" /></button>}
                         </>
                       ) : (

@@ -12,9 +12,9 @@ const mockPayments = [
 ];
 
 const statusConfig = {
-  pending: { label: "Pending", color: "text-[#FF9500]", bg: "bg-[#FF9500]/10" },
-  verified: { label: "Verified", color: "text-[#34C759]", bg: "bg-[#34C759]/10" },
-  disputed: { label: "Disputed", color: "text-destructive", bg: "bg-destructive/10" },
+  pending: { label: "Pending", color: "text-white", bg: "bg-[#FF9500]" },
+  verified: { label: "Verified", color: "text-white", bg: "bg-[#34C759]" },
+  disputed: { label: "Disputed", color: "text-white", bg: "bg-[#FF3B30]" },
 };
 
 export default function PaymentsPage() {
@@ -93,7 +93,7 @@ export default function PaymentsPage() {
                 <X className="size-4" />
               </button>
             </div>
-            <div className="bg-background rounded-xl h-64 flex items-center justify-center text-muted-foreground text-[15px]">
+            <div className="bg-background rounded-xl h-64 flex items-center justify-center text-foreground/50 text-[15px]">
               {screenshot}
             </div>
           </div>

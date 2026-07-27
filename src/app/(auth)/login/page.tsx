@@ -72,7 +72,7 @@ export default function LoginPage() {
                     }
                     setError("");
                   }}
-                  className="flex-1 bg-transparent border-none text-[17px] text-foreground focus:outline-none p-0"
+                  className="flex-1 bg-transparent border-none text-[17px] text-foreground focus:outline-none p-0 placeholder:text-muted-foreground/50"
                   placeholder="77-123456"
                   required
                   aria-label="Phone number"

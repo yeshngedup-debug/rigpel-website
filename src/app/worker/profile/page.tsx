@@ -68,12 +68,12 @@ export default function WorkerProfilePage() {
         <h2 className="text-[18px] font-semibold text-foreground mb-5">Skills & Availability</h2>
         <div className="space-y-4">
           <div>
-            <label className="text-[14px] font-medium text-foreground mb-1.5 block">Skills</label>
-            <input type="text" placeholder="e.g. Driving, Customer Service, Cleaning" className="w-full px-4 py-3 bg-background border border-border rounded-xl text-[15px] focus:outline-none focus:ring-2 focus:ring-ring/20" />
+            <label className="text-[14px] font-medium text-foreground/60 mb-1.5 block">Skills</label>
+            <input type="text" placeholder="e.g. Driving, Customer Service, Cleaning" className="w-full px-4 py-3 bg-background border border-border rounded-xl text-[15px] focus:outline-none focus:ring-2 focus:ring-ring/20 placeholder:text-muted-foreground/50" />
           </div>
           <div>
-            <label className="text-[14px] font-medium text-foreground mb-1.5 block">Availability</label>
-            <select className="w-full px-4 py-3 bg-background border border-border rounded-xl text-[15px] focus:outline-none focus:ring-2 focus:ring-ring/20">
+            <label className="text-[14px] font-medium text-foreground/60 mb-1.5 block">Availability</label>
+            <select className="select w-full bg-background border border-border rounded-xl text-[15px]">
               <option>Full-time</option><option>Part-time</option><option>Weekends only</option><option>Flexible</option>
             </select>
           </div>

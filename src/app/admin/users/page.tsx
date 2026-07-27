@@ -42,7 +42,7 @@ export default function UsersPage() {
       <div className="overflow-x-auto rounded-2xl border border-border">
         <table className="table">
           <thead>
-            <tr className="bg-background text-[13px] font-medium text-muted-foreground uppercase tracking-wider">
+            <tr className="bg-background text-[13px] font-medium text-foreground/50 uppercase tracking-wider">
               <th>Name</th><th>Phone</th><th>Role</th><th>CID</th><th>Status</th><th>Actions</th>
             </tr>
           </thead>
@@ -53,20 +53,20 @@ export default function UsersPage() {
                 <td><p className="text-[14px] text-muted-foreground">{user.phone}</p></td>
                 <td><span className="capitalize text-[14px] text-foreground">{user.role}</span></td>
                 <td>
-                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-[12px] font-medium ${user.cidVerified ? "text-success bg-success/10" : "text-warning bg-warning/10"}`}>
+                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-[12px] font-medium ${user.cidVerified ? "bg-[#34C759] text-white" : "bg-[#FF9500] text-white"}`}>
                     {user.cidVerified ? <Check className="size-3" /> : <X className="size-3" />}
                     {user.cidVerified ? "Verified" : "Unverified"}
                   </span>
                 </td>
                 <td>
-                  <span className={`inline-block px-3 py-1 rounded-full text-[12px] font-medium capitalize ${user.status === "active" ? "text-success bg-success/10" : "text-error bg-error/10"}`}>{user.status}</span>
+                  <span className={`inline-block px-3 py-1 rounded-full text-[12px] font-medium capitalize ${user.status === "active" ? "bg-[#34C759] text-white" : "bg-[#FF3B30] text-white"}`}>{user.status}</span>
                 </td>
                 <td>
                   <div className="flex items-center gap-2">
                     <button onClick={() => toggleCidVerify(user.id)} className="btn btn-outline btn-sm">
                       {user.cidVerified ? "Unverify" : "Verify"} CID
                     </button>
-                    <button onClick={() => toggleSuspension(user.id)} className={`btn btn-sm gap-1.5 text-white ${user.status === "active" ? "btn-error" : "btn-success"}`}>
+                    <button onClick={() => toggleSuspension(user.id)} className={`btn btn-sm gap-1.5 text-white ${user.status === "active" ? "btn-error" : "bg-[#1E7E34] hover:bg-[#16632A] border-none"}`}>
                       {user.status === "active" ? <ShieldOff className="size-3.5" /> : <Shield className="size-3.5" />}
                       {user.status === "active" ? "Suspend" : "Unsuspend"}
                     </button>

@@ -13,10 +13,10 @@ const myJobs = [
 ];
 
 const statusConfig: Record<string, { label: string; color: string; bg: string; icon: any }> = {
-  pending: { label: "Pending", color: "text-[#FF9500]", bg: "bg-[#FF9500]/10", icon: Clock },
-  accepted: { label: "Accepted", color: "text-[#34C759]", bg: "bg-[#34C759]/10", icon: CheckCircle },
-  completed: { label: "Completed", color: "text-muted-foreground", bg: "bg-muted", icon: CheckCircle },
-  rejected: { label: "Rejected", color: "text-[#FF3B30]", bg: "bg-[#FF3B30]/10", icon: XCircle },
+  pending: { label: "Pending", color: "text-white", bg: "bg-[#FF9500]", icon: Clock },
+  accepted: { label: "Accepted", color: "text-white", bg: "bg-[#34C759]", icon: CheckCircle },
+  completed: { label: "Completed", color: "text-white", bg: "bg-[#86868B]", icon: CheckCircle },
+  rejected: { label: "Rejected", color: "text-white", bg: "bg-[#FF3B30]", icon: XCircle },
 };
 
 export default function MyJobsPage() {

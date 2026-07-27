@@ -105,12 +105,12 @@ h1, h2, h3, .heading-display {
   letter-spacing: 0.02em;
 }
 
-.apple-pill-blue { background: rgba(109, 70, 255, 0.12); color: #6D46FF; }
-.apple-pill-green { background: rgba(52, 199, 89, 0.12); color: #34C759; }
-.apple-pill-orange { background: rgba(255, 149, 0, 0.12); color: #FF9500; }
-.apple-pill-purple { background: rgba(175, 82, 222, 0.12); color: #AF52DE; }
-.apple-pill-pink { background: rgba(255, 45, 85, 0.12); color: #FF2D55; }
-.apple-pill-gray { background: rgba(142, 142, 147, 0.12); color: #8E8E93; }
+.apple-pill-blue { background: rgba(109, 70, 255, 0.2); color: #4A2BBF; }
+.apple-pill-green { background: rgba(52, 199, 89, 0.2); color: #1A8A3F; }
+.apple-pill-orange { background: rgba(255, 149, 0, 0.2); color: #C46900; }
+.apple-pill-purple { background: rgba(175, 82, 222, 0.2); color: #7B2FA0; }
+.apple-pill-pink { background: rgba(255, 45, 85, 0.2); color: #B31D3A; }
+.apple-pill-gray { background: rgba(142, 142, 147, 0.2); color: #5E5E62; }
 
 .hero-stat {
   font-size: 60px;
@@ -206,7 +206,7 @@ input:focus, textarea:focus, select:focus {
   z-index: 2;
 }
 
-.apple-pill-destructive { background: rgba(255, 59, 48, 0.12); color: #FF3B30; }
+.apple-pill-destructive { background: rgba(255, 59, 48, 0.2); color: #C41A1A; }
 
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out;

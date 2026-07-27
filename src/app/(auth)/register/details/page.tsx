@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, User, Phone, CreditCard, Check, Loader2, Search, Briefcase } from "lucide-react";
+import { ArrowRight, ArrowLeft, User, Phone, CreditCard, Loader2, Search, Briefcase } from "lucide-react";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 const ROLE_LABELS = { worker: { name: "Worker", icon: Search, desc: "Find part-time jobs" }, client: { name: "Employer", icon: Briefcase, desc: "Post jobs and hire" } };
@@ -107,7 +107,7 @@ export default function RegisterDetailsPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="bg-white rounded-2xl border border-border p-6 space-y-5">
               <div>
-                <label htmlFor="full_name" className="text-[13px] font-medium text-foreground block mb-1.5">
+                <label htmlFor="full_name" className="text-[13px] font-medium text-foreground/60 block mb-1.5">
                   Full Name
                 </label>
                 <input
@@ -123,7 +123,7 @@ export default function RegisterDetailsPage() {
               </div>
 
               <div>
-                <label htmlFor="phone" className="text-[13px] font-medium text-foreground block mb-1.5">
+                <label htmlFor="phone" className="text-[13px] font-medium text-foreground/60 block mb-1.5">
                   Phone Number
                 </label>
                 <div className="flex items-center gap-0 rounded-xl border border-border bg-white overflow-hidden focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/20 transition-all">
@@ -145,7 +145,7 @@ export default function RegisterDetailsPage() {
               </div>
 
               <div>
-                <label htmlFor="cid_number" className="text-[13px] font-medium text-foreground block mb-1.5">
+                <label htmlFor="cid_number" className="text-[13px] font-medium text-foreground/60 block mb-1.5">
                   CID Number
                 </label>
                 <input
@@ -184,12 +184,12 @@ export default function RegisterDetailsPage() {
             <button
               type="submit"
               disabled={loading || !form.full_name || phone.length < 12 || !form.cid_number || !form.agreed}
-              className="btn btn-primary btn-block h-12 text-[15px] font-semibold rounded-xl"
+              className="btn btn-primary btn-block h-14 text-[16px] font-semibold rounded-xl shadow-sm"
             >
               {loading ? (
-                <><Loader2 className="size-4 animate-spin" /> Creating account...</>
+                <><Loader2 className="size-5 animate-spin" /> Creating account...</>
               ) : (
-                <><Check className="size-4" /> Create Account</>
+                <><span>Create Account</span><ArrowRight className="size-5" /></>
               )}
             </button>
 
