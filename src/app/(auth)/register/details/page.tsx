@@ -57,21 +57,22 @@ export default function RegisterDetailsPage() {
 
   const roleInfo = role ? ROLE_LABELS[role as keyof typeof ROLE_LABELS] : null;
   const RoleIcon = roleInfo?.icon || User;
+  const isFormValid = Boolean(form.full_name && phone.length >= 12 && form.cid_number && form.agreed);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="flex items-center justify-between px-6 md:px-10 py-5 shrink-0">
         <Link href="/" className="text-[17px] font-bold tracking-[0.15em] text-foreground">RIGPEL</Link>
-        <Link href="/register/role" className="text-[14px] text-primary font-medium hover:underline min-h-[44px] inline-flex items-center">
+        <Link href="/register/role" className="text-[14px] text-primary font-medium hover:underline min-h-11 inline-flex items-center">
           Change role
         </Link>
       </header>
 
       <div className="flex-1 flex items-start md:items-center justify-center px-6 pb-16 pt-6 md:pt-0">
-        <div className="w-full max-w-[480px]">
+        <div className="w-full max-w-120">
           <button
             onClick={() => router.push("/register/role")}
-            className="flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors mb-6 press-effect min-h-[44px]"
+            className="flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors mb-6 press-effect min-h-11"
             aria-label="Back to role selection"
           >
             <ArrowLeft className="size-4" />
@@ -94,6 +95,9 @@ export default function RegisterDetailsPage() {
           </div>
 
           <div className="text-center mb-6">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.24em] text-primary/80 mb-3">
+              Step 2 of 2
+            </p>
             <h1 className="text-[32px] md:text-[40px] font-bold tracking-[-0.03em] text-foreground leading-none">
               Create your account
             </h1>
@@ -107,7 +111,7 @@ export default function RegisterDetailsPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="bg-white rounded-2xl border border-border p-6 space-y-5">
               <div>
-                <label htmlFor="full_name" className="text-[13px] font-medium text-muted-foreground block mb-1.5">
+                <label htmlFor="full_name" className="text-[13px] font-semibold text-foreground/80 block mb-1.5">
                   Full Name
                 </label>
                 <input
@@ -116,18 +120,18 @@ export default function RegisterDetailsPage() {
                   value={form.full_name}
                   onChange={update("full_name")}
                   placeholder="e.g. Tashi Dorji"
-                  className="input w-full"
+                  className="input input-bordered w-full bg-background text-foreground placeholder:text-foreground/50"
                   required
                   autoComplete="name"
                 />
               </div>
 
               <div>
-                <label htmlFor="phone" className="text-[13px] font-medium text-muted-foreground block mb-1.5">
+                <label htmlFor="phone" className="text-[13px] font-semibold text-foreground/80 block mb-1.5">
                   Phone Number
                 </label>
-                <div className="flex items-center gap-0 rounded-xl border border-border bg-white overflow-hidden focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/20 transition-all">
-                  <span className="text-[15px] text-foreground font-medium px-4 py-3 bg-background border-r border-border shrink-0">+975-</span>
+                <div className="flex items-center gap-0 rounded-xl border border-border bg-background overflow-hidden focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/20 transition-all">
+                  <span className="text-[15px] text-foreground font-medium px-4 py-3 bg-white border-r border-border shrink-0">+975-</span>
                   <input
                     id="phone"
                     type="tel"
@@ -137,7 +141,7 @@ export default function RegisterDetailsPage() {
                       if (val.length <= 9) setPhoneRaw(val);
                     }}
                     placeholder="77-123456"
-                    className="flex-1 bg-transparent border-none text-[15px] text-foreground focus:outline-none px-4 py-3"
+                    className="flex-1 bg-transparent border-none text-[15px] text-foreground placeholder:text-foreground/50 focus:outline-none px-4 py-3"
                     required
                     autoComplete="tel"
                   />
@@ -145,7 +149,7 @@ export default function RegisterDetailsPage() {
               </div>
 
               <div>
-                <label htmlFor="cid_number" className="text-[13px] font-medium text-muted-foreground block mb-1.5">
+                <label htmlFor="cid_number" className="text-[13px] font-semibold text-foreground/80 block mb-1.5">
                   CID Number
                 </label>
                 <input
@@ -154,7 +158,7 @@ export default function RegisterDetailsPage() {
                   value={form.cid_number}
                   onChange={update("cid_number")}
                   placeholder="e.g. 11501000123"
-                  className="input w-full"
+                  className="input input-bordered w-full bg-background text-foreground placeholder:text-foreground/50"
                   required
                   autoComplete="off"
                   maxLength={11}
@@ -181,17 +185,28 @@ export default function RegisterDetailsPage() {
               </span>
             </label>
 
-            <button
-              type="submit"
-              disabled={loading || !form.full_name || phone.length < 12 || !form.cid_number || !form.agreed}
-              className="btn btn-primary btn-block h-14 text-[16px] font-semibold rounded-xl shadow-sm"
-            >
-              {loading ? (
-                <><Loader2 className="size-5 animate-spin" /> Creating account...</>
-              ) : (
-                <><span>Create Account</span><ArrowRight className="size-5" /></>
-              )}
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                type="button"
+                onClick={() => router.push("/register/role")}
+                className="btn btn-ghost btn-block h-14 text-[15px] font-semibold rounded-xl border border-border bg-white text-foreground hover:bg-background"
+              >
+                <ArrowLeft className="size-5" />
+                <span>Back</span>
+              </button>
+
+              <button
+                type="submit"
+                disabled={loading || !isFormValid}
+                className="btn btn-primary btn-block h-14 text-[16px] font-semibold rounded-xl shadow-sm"
+              >
+                {loading ? (
+                  <><Loader2 className="size-5 animate-spin" /> Creating account...</>
+                ) : (
+                  <><span>Continue</span><ArrowRight className="size-5" /></>
+                )}
+              </button>
+            </div>
 
             <p className="text-center text-[13px] text-foreground/70">
               Already have an account?{" "}
