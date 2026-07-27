@@ -71,7 +71,7 @@ export default function RegisterDetailsPage() {
         <div className="w-full max-w-[480px]">
           <button
             onClick={() => router.push("/register/role")}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6 press-effect min-h-[44px]"
+            className="flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors mb-6 press-effect min-h-[44px]"
             aria-label="Back to role selection"
           >
             <ArrowLeft className="size-4" />
@@ -86,7 +86,7 @@ export default function RegisterDetailsPage() {
               <p className="text-[15px] font-semibold text-foreground">
                 Signing up as {roleInfo?.name || "..."}
               </p>
-              <p className="text-[13px] text-muted-foreground">{roleInfo?.desc}</p>
+              <p className="text-[13px] text-foreground/70">{roleInfo?.desc}</p>
             </div>
             <Link href="/register/role" className="text-[13px] text-primary font-medium hover:underline shrink-0">
               Change
@@ -97,7 +97,7 @@ export default function RegisterDetailsPage() {
             <h1 className="text-[32px] md:text-[40px] font-bold tracking-[-0.03em] text-foreground leading-none">
               Create your account
             </h1>
-            <p className="text-[15px] text-muted-foreground mt-3">
+            <p className="text-[15px] text-foreground/70 mt-3">
               {role === "client"
                 ? "Set up your employer profile to start hiring"
                 : "Set up your worker profile to start finding work"}
@@ -107,7 +107,7 @@ export default function RegisterDetailsPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="bg-white rounded-2xl border border-border p-6 space-y-5">
               <div>
-                <label htmlFor="full_name" className="text-[13px] font-medium text-foreground/60 block mb-1.5">
+                <label htmlFor="full_name" className="text-[13px] font-medium text-foreground/70 block mb-1.5">
                   Full Name
                 </label>
                 <input
@@ -123,7 +123,7 @@ export default function RegisterDetailsPage() {
               </div>
 
               <div>
-                <label htmlFor="phone" className="text-[13px] font-medium text-foreground/60 block mb-1.5">
+                <label htmlFor="phone" className="text-[13px] font-medium text-foreground/70 block mb-1.5">
                   Phone Number
                 </label>
                 <div className="flex items-center gap-0 rounded-xl border border-border bg-white overflow-hidden focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/20 transition-all">
@@ -145,7 +145,7 @@ export default function RegisterDetailsPage() {
               </div>
 
               <div>
-                <label htmlFor="cid_number" className="text-[13px] font-medium text-foreground/60 block mb-1.5">
+                <label htmlFor="cid_number" className="text-[13px] font-medium text-foreground/70 block mb-1.5">
                   CID Number
                 </label>
                 <input
@@ -159,7 +159,7 @@ export default function RegisterDetailsPage() {
                   autoComplete="off"
                   maxLength={11}
                 />
-                <p className="text-[12px] text-muted-foreground mt-1.5">
+                <p className="text-[12px] text-foreground/70 mt-1.5">
                   Your Citizenship ID will be verified against the national database
                 </p>
               </div>
@@ -193,7 +193,7 @@ export default function RegisterDetailsPage() {
               )}
             </button>
 
-            <p className="text-center text-[13px] text-muted-foreground">
+            <p className="text-center text-[13px] text-foreground/70">
               Already have an account?{" "}
               <Link href="/login" className="text-primary font-medium hover:underline">Sign in</Link>
             </p>
