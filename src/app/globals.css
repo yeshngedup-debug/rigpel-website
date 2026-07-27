@@ -24,6 +24,8 @@
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-border: var(--sidebar-border);
+  --color-brand: var(--brand);
+  --color-brand-subtle: var(--brand-subtle);
   --radius: 0.625rem;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -198,6 +200,17 @@ input:focus, textarea:focus, select:focus {
 .card-spotlight > * {
   position: relative;
   z-index: 2;
+}
+
+.apple-pill-destructive { background: rgba(255, 59, 48, 0.12); color: #FF3B30; }
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

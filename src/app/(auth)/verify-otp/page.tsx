@@ -1,15 +1,29 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Loader2 } from "lucide-react";
 
+const RESEND_COOLDOWN = 30;
+
 export default function VerifyOTPPage() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [loading, setLoading] = useState(false);
+  const [cooldown, setCooldown] = useState(0);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const router = useRouter();
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const timer = setInterval(() => setCooldown((c) => c - 1), 1000);
+    return () => clearInterval(timer);
+  }, [cooldown]);
+
+  const handleResend = () => {
+    if (cooldown > 0) return;
+    setCooldown(RESEND_COOLDOWN);
+  };
 
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return;
@@ -81,6 +95,7 @@ export default function VerifyOTPPage() {
                   className="text-center text-[24px] font-semibold"
                   maxLength={1}
                   autoFocus={i === 0}
+                  aria-label={`Digit ${i + 1}`}
                 />
               ))}
             </label>
@@ -99,8 +114,13 @@ export default function VerifyOTPPage() {
 
             <p className="text-center mt-6 text-[14px] text-muted-foreground">
               Didn't receive code?{" "}
-              <button type="button" className="text-primary font-medium hover:underline">
-                Resend
+              <button
+                type="button"
+                onClick={handleResend}
+                disabled={cooldown > 0}
+                className="text-primary font-medium hover:underline disabled:text-muted-foreground disabled:no-underline disabled:cursor-not-allowed"
+              >
+                {cooldown > 0 ? `Resend in ${cooldown}s` : "Resend"}
               </button>
             </p>
           </form>

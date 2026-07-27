@@ -19,7 +19,7 @@ export default function WorkerProfilePage() {
           <div className="size-20 rounded-full bg-gradient-to-br from-primary to-[#5856D6] flex items-center justify-center text-white font-bold text-[28px]">
             <User className="size-10" />
           </div>
-          <button className="absolute -bottom-1 -right-1 size-8 rounded-full bg-primary text-white flex items-center justify-center border-2 border-white press-effect">
+          <button type="button" className="absolute -bottom-1 -right-1 size-8 rounded-full bg-primary text-white flex items-center justify-center border-2 border-white press-effect" aria-label="Upload profile photo">
             <Camera className="size-4" />
           </button>
         </div>

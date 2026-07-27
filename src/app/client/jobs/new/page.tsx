@@ -47,7 +47,7 @@ export default function PostJobPage() {
 
   return (
     <div className="p-6 md:p-8 max-w-3xl mx-auto">
-      <button onClick={() => router.back()} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6 press-effect">
+      <button type="button" onClick={() => router.back()} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6 press-effect" aria-label="Go back">
         <ArrowLeft className="size-4" /><span className="text-[14px]">Back</span>
       </button>
       <ul className="steps mb-8">
@@ -61,14 +61,14 @@ export default function PostJobPage() {
           <fieldset className="fieldset">
             <legend className="fieldset-legend text-[22px] font-semibold">Job Details</legend>
             <label className="fieldset-label">Job Title</label>
-            <input type="text" value={form.title} onChange={update("title")} placeholder="e.g. Delivery Rider" className="input w-full" />
+            <input type="text" value={form.title} onChange={update("title")} placeholder="e.g. Delivery Rider" className="input w-full" aria-label="Job title" />
             <label className="fieldset-label">Category</label>
-            <select value={form.category} onChange={update("category")} className="select w-full">
+            <select value={form.category} onChange={update("category")} className="select w-full" aria-label="Category">
               {["Tech", "Labor", "Service", "Creative", "Hospitality", "Other"].map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
             <label className="fieldset-label">Location</label>
-            <input type="text" value={form.location} onChange={update("location")} placeholder="e.g. Thimphu" className="input w-full" />
-            <button onClick={() => setStep(2)} className="btn btn-primary mt-2">Continue</button>
+            <input type="text" value={form.location} onChange={update("location")} placeholder="e.g. Thimphu" className="input w-full" aria-label="Location" />
+            <button type="button" onClick={() => setStep(2)} className="btn btn-primary mt-2">Continue</button>
           </fieldset>
         )}
         {step === 2 && (
@@ -77,11 +77,11 @@ export default function PostJobPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="fieldset-label">Pay Amount</label>
-                <input type="number" value={form.pay_amount} onChange={update("pay_amount")} placeholder="500" className="input w-full" />
+                <input type="number" value={form.pay_amount} onChange={update("pay_amount")} placeholder="500" className="input w-full" min="1" aria-label="Pay amount" />
               </div>
               <div>
                 <label className="fieldset-label">Pay Period</label>
-                <select value={form.pay_period} onChange={update("pay_period")} className="select w-full">
+                <select value={form.pay_period} onChange={update("pay_period")} className="select w-full" aria-label="Pay period">
                   <option value="day">Per Day</option><option value="week">Per Week</option><option value="month">Per Month</option>
                 </select>
               </div>
@@ -89,18 +89,18 @@ export default function PostJobPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="fieldset-label">Duration</label>
-                <input type="number" value={form.duration_value} onChange={update("duration_value")} min="1" className="input w-full" />
+                <input type="number" value={form.duration_value} onChange={update("duration_value")} min="1" className="input w-full" aria-label="Duration" />
               </div>
               <div>
                 <label className="fieldset-label">Duration Unit</label>
-                <select value={form.duration_unit} onChange={update("duration_unit")} className="select w-full">
+                <select value={form.duration_unit} onChange={update("duration_unit")} className="select w-full" aria-label="Duration unit">
                   <option value="day">Days</option><option value="week">Weeks</option><option value="month">Months</option>
                 </select>
               </div>
             </div>
             <div className="flex gap-3 mt-2">
-              <button onClick={() => setStep(1)} className="btn btn-outline">Back</button>
-              <button onClick={() => setStep(3)} className="btn btn-primary">Continue</button>
+              <button type="button" onClick={() => setStep(1)} className="btn btn-outline">Back</button>
+              <button type="button" onClick={() => setStep(3)} className="btn btn-primary">Continue</button>
             </div>
           </fieldset>
         )}
@@ -108,19 +108,19 @@ export default function PostJobPage() {
           <fieldset className="fieldset">
             <div className="flex items-center justify-between">
               <legend className="fieldset-legend text-[22px] font-semibold">Duties</legend>
-              <button onClick={addDuty} className="btn btn-ghost btn-sm text-primary"><Plus className="size-4" /> Add Duty</button>
+              <button type="button" onClick={addDuty} className="btn btn-ghost btn-sm text-primary"><Plus className="size-4" /> Add Duty</button>
             </div>
             <div className="space-y-3">
               {form.duties.map((duty, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <input type="text" value={duty} onChange={(e) => updateDuty(i, e.target.value)} placeholder={`Duty ${i + 1}`} className="input flex-1" />
-                  {form.duties.length > 1 && <button onClick={() => removeDuty(i)} className="btn btn-ghost btn-square btn-sm text-muted-foreground hover:text-destructive"><X className="size-4" /></button>}
+                  <input type="text" value={duty} onChange={(e) => updateDuty(i, e.target.value)} placeholder={`Duty ${i + 1}`} className="input flex-1" aria-label={`Duty ${i + 1}`} />
+                  {form.duties.length > 1 && <button type="button" onClick={() => removeDuty(i)} className="btn btn-ghost btn-square btn-sm text-muted-foreground hover:text-destructive"><X className="size-4" /></button>}
                 </div>
               ))}
             </div>
             <div className="flex gap-3 mt-2">
-              <button onClick={() => setStep(2)} className="btn btn-outline">Back</button>
-              <button onClick={handleSubmit} disabled={submitting} className="btn btn-primary gap-2 bg-gradient-to-r from-primary to-[#5856D6] border-0">
+              <button type="button" onClick={() => setStep(2)} className="btn btn-outline">Back</button>
+              <button type="button" onClick={handleSubmit} disabled={submitting} className="btn btn-primary gap-2 bg-gradient-to-r from-primary to-[#5856D6] border-0">
                 {submitting ? <><Loader2 className="size-4 animate-spin" /> Posting...</> : "Post Job"}
               </button>
             </div>

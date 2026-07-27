@@ -30,9 +30,11 @@ export default function BrowseGigsPage() {
       </div>
 
       <div className="flex flex-col md:flex-row gap-4 mb-6">
-        <div className="flex-1 relative">
-          <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-          <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search gigs..." className="w-full pl-10 pr-4 py-3 bg-white border border-border rounded-xl text-[15px] focus:outline-none focus:ring-2 focus:ring-ring/20" />
+        <div className="flex-1">
+          <label className="input input-bordered flex items-center gap-3 w-full">
+            <SearchIcon className="size-4 text-muted-foreground" />
+            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search gigs..." className="grow" aria-label="Search gigs" />
+          </label>
         </div>
         <div className="flex gap-2">
           {["all", "Service", "Labor", "Tech", "Creative"].map((c) => (

@@ -5,9 +5,14 @@ export function useUser() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem("rigpel_user");
-    if (stored) {
-      setProfile(JSON.parse(stored));
+    try {
+      const stored = localStorage.getItem("rigpel_user");
+      if (stored) {
+        setProfile(JSON.parse(stored));
+      }
+    } catch {
+      console.error("Failed to parse stored user profile");
+      localStorage.removeItem("rigpel_user");
     }
     setLoading(false);
   }, []);

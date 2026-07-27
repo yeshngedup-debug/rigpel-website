@@ -7,7 +7,7 @@ import {
   LayoutDashboard, Briefcase, Users, ClipboardCheck, CreditCard,
   Search, Clock, UserCircle, LogOut, Menu, X
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const workerNav = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -34,13 +34,18 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { profile } = useUser();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
 
   const navItems = role === "admin" ? adminNav : role === "client" ? clientNav : workerNav;
   const basePath = role === "admin" ? "/admin" : role === "client" ? "/client" : "/worker";
 
   return (
-    <div className="min-h-screen bg-background flex">
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-border transform transition-transform duration-200 lg:relative lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+    <div className="h-screen bg-background flex overflow-hidden">
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-border transform transition-transform duration-200 lg:sticky lg:top-0 lg:translate-x-0 lg:h-screen lg:overflow-y-auto ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="h-16 flex items-center px-6 border-b border-border">
           <Link href={`${basePath}/dashboard`} className="text-[17px] font-bold tracking-[0.15em] text-brand">
             RIGPEL
@@ -67,7 +72,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border">
+        <div className="p-4 border-t border-border mt-auto">
           <div className="flex items-center gap-3 px-4 py-3">
             <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-[16px]">
               {profile?.full_name?.charAt(0) || "U"}
@@ -76,21 +81,21 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               <p className="text-[14px] font-medium text-foreground truncate">{profile?.full_name || "User"}</p>
               <p className="text-[12px] text-muted-foreground capitalize">{role}</p>
             </div>
-            <button onClick={() => { localStorage.clear(); window.location.href = "/login"; }} className="p-2 text-muted-foreground hover:text-destructive transition-colors">
+            <button onClick={() => { localStorage.removeItem("rigpel_user"); localStorage.removeItem("rigpel_role"); window.location.href = "/login"; }} className="p-2 text-muted-foreground hover:text-destructive transition-colors">
               <LogOut className="size-4" />
             </button>
           </div>
         </div>
       </aside>
 
-      <div className="flex-1 min-w-0">
-        <header className="h-16 bg-white border-b border-border flex items-center px-6 gap-4 lg:px-8">
+      <div className="flex-1 flex flex-col min-w-0">
+        <header className="h-16 bg-white border-b border-border flex items-center px-6 gap-4 lg:px-8 shrink-0">
           <button onClick={() => setSidebarOpen(true)} className="lg:hidden p-2">
             <Menu className="size-5" />
           </button>
           <div className="flex-1" />
         </header>
-        <main>{children}</main>
+        <main ref={mainRef} className="flex-1 overflow-y-auto">{children}</main>
       </div>
     </div>
   );

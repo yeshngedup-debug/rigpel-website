@@ -5,13 +5,21 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, Phone, Loader2 } from "lucide-react";
 
+const PHONE_REGEX = /^\+975-\d{2}-\d{6}$/;
+
 export default function LoginPage() {
   const [phone, setPhone] = useState("+975-");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!PHONE_REGEX.test(phone)) {
+      setError("Enter a valid Bhutanese phone number (e.g., +975-77-123456)");
+      return;
+    }
+    setError("");
     setLoading(true);
     router.push("/verify-otp");
   };
@@ -47,20 +55,35 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit}>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full px-5 py-4 border border-border rounded-xl text-[17px] text-foreground bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all"
-                placeholder="+975-77-123456"
-                required
-                autoFocus
-              />
+            <form onSubmit={handleSubmit} noValidate>
+              <div className="flex items-center gap-3 bg-white border border-border rounded-xl px-5 py-4 focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/20 transition-all">
+                <span className="text-[15px] text-foreground font-medium shrink-0">+975-</span>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val.startsWith("+975-")) {
+                      setPhone(val);
+                    } else {
+                      setPhone("+975-" + val.replace(/^\+975-?/, ""));
+                    }
+                    setError("");
+                  }}
+                  className="flex-1 bg-transparent border-none text-[17px] text-foreground focus:outline-none p-0"
+                  placeholder="77-123456"
+                  required
+                  aria-label="Phone number"
+                  autoFocus
+                />
+              </div>
+              {error && (
+                <p className="text-[13px] text-destructive mt-2" role="alert">{error}</p>
+              )}
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full py-4 px-6 bg-primary text-white rounded-xl font-semibold text-[16px] hover:opacity-90 transition-opacity disabled:opacity-50 mt-8 press-effect flex items-center justify-center gap-2"
+                disabled={loading || phone.length < 10}
+                className="btn btn-primary btn-block h-14 text-[16px] font-semibold rounded-xl mt-8"
               >
                 {loading ? (
                   <><Loader2 className="size-5 animate-spin" /> Sending code...</>

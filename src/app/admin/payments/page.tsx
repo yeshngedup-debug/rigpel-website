@@ -19,6 +19,7 @@ const statusConfig = {
 export default function PaymentsPage() {
   const [filter, setFilter] = useState("all");
   const [payments, setPayments] = useState(mockPayments);
+  const [screenshot, setScreenshot] = useState<string | null>(null);
 
   const updateStatus = (id: string, status: string) => {
     setPayments(payments.map(p => p.id === id ? { ...p, status: status as any } : p));
@@ -33,9 +34,9 @@ export default function PaymentsPage() {
         <p className="text-[17px] text-muted-foreground mt-1">Verify payment screenshots and resolve disputes</p>
       </div>
 
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-6" role="tablist" aria-label="Filter payments">
         {["all", "pending", "verified", "disputed"].map((f) => (
-          <button key={f} onClick={() => setFilter(f)} className={`px-4 py-2 rounded-full text-[13px] font-medium capitalize transition-colors press-effect ${filter === f ? "bg-primary text-white" : "bg-white text-foreground border border-border hover:bg-background"}`}>
+          <button key={f} type="button" onClick={() => setFilter(f)} role="tab" aria-selected={filter === f} className={`px-4 py-2 rounded-full text-[13px] font-medium capitalize transition-colors press-effect ${filter === f ? "bg-primary text-white" : "bg-white text-foreground border border-border hover:bg-background"}`}>
             {f}
           </button>
         ))}
@@ -61,13 +62,13 @@ export default function PaymentsPage() {
                   <span className={`inline-block px-3 py-1 rounded-full text-[12px] font-medium ${cfg.color} ${cfg.bg}`}>{cfg.label}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="p-2 border border-border rounded-xl text-muted-foreground hover:text-foreground press-effect" title="View Screenshot"><Eye className="size-4" /></button>
+                  <button type="button" onClick={() => setScreenshot(payment.screenshot)} className="p-2 border border-border rounded-xl text-muted-foreground hover:text-foreground press-effect" title="View Screenshot" aria-label="View payment screenshot"><Eye className="size-4" /></button>
                   {payment.status === "pending" || payment.status === "disputed" ? (
                     <>
-                      <button onClick={() => updateStatus(payment.id, "verified")} className="flex items-center gap-1 px-4 py-2 bg-[#34C759] text-white rounded-xl text-[13px] font-medium hover:opacity-90 press-effect">
+                      <button type="button" onClick={() => updateStatus(payment.id, "verified")} className="flex items-center gap-1 px-4 py-2 bg-[#34C759] text-white rounded-xl text-[13px] font-medium hover:opacity-90 press-effect">
                         <Check className="size-4" /> Verify
                       </button>
-                      <button onClick={() => updateStatus(payment.id, "disputed")} className="flex items-center gap-1 px-4 py-2 bg-destructive text-white rounded-xl text-[13px] font-medium hover:opacity-90 press-effect">
+                      <button type="button" onClick={() => updateStatus(payment.id, "disputed")} className="flex items-center gap-1 px-4 py-2 bg-destructive text-white rounded-xl text-[13px] font-medium hover:opacity-90 press-effect">
                         <X className="size-4" /> Flag
                       </button>
                     </>
@@ -80,6 +81,22 @@ export default function PaymentsPage() {
           );
         })}
       </div>
+
+      {screenshot && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6" onClick={() => setScreenshot(null)}>
+          <div className="bg-white rounded-2xl max-w-2xl w-full p-6" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-[17px] font-semibold">Screenshot</h3>
+              <button type="button" onClick={() => setScreenshot(null)} className="btn btn-ghost btn-square btn-sm" aria-label="Close screenshot">
+                <X className="size-4" />
+              </button>
+            </div>
+            <div className="bg-background rounded-xl h-64 flex items-center justify-center text-muted-foreground text-[15px]">
+              {screenshot}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
