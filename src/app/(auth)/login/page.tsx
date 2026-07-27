@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Phone, Loader2 } from "lucide-react";
+import { ArrowRight, Phone, Loader2 } from "lucide-react";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 const PHONE_REGEX = /^\+975-\d{2}-\d{6}$/;
@@ -27,38 +27,41 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <header className="flex items-center justify-between px-10 py-5">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(109,70,255,0.12),_transparent_38%),linear-gradient(135deg,_#f8f7ff_0%,_#ffffff_100%)] flex flex-col">
+      <header className="flex items-center justify-between px-6 md:px-10 py-5">
         <Link href="/" className="text-[17px] font-bold tracking-[0.15em] text-foreground">RIGPEL</Link>
-        <Link href="/register/role" className="text-[14px] text-primary font-medium hover:underline min-h-[44px] inline-flex items-center">
+        <Link href="/register/role" className="text-[14px] text-primary font-medium hover:underline min-h-11 inline-flex items-center">
           Create account
         </Link>
       </header>
 
-      <div className="flex-1 flex items-center justify-center px-6 pb-16">
-        <div className="w-full max-w-[520px]">
-          <div className="text-center mb-10">
-            <h1 className="text-[48px] font-bold tracking-[-0.03em] text-foreground leading-none">
+      <div className="flex-1 flex items-center justify-center px-6 pb-16 py-8">
+        <div className="w-full max-w-[540px]">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/10 px-3 py-1 text-[12px] font-semibold uppercase tracking-[0.24em] text-primary mb-4">
+              Secure access
+            </div>
+            <h1 className="text-[40px] md:text-[48px] font-bold tracking-[-0.03em] text-foreground leading-none">
               Sign in
             </h1>
-            <p className="text-[17px] text-muted-foreground mt-3">
+            <p className="text-[15px] md:text-[17px] text-muted-foreground mt-3">
               Enter your phone number to continue
             </p>
           </div>
 
-          <div className="bg-background rounded-[24px] p-10">
+          <div className="bg-white/90 rounded-[28px] border border-border p-8 md:p-10 shadow-[0_30px_80px_rgba(15,23,42,0.08)] backdrop-blur-sm">
             <div className="flex items-center gap-4 mb-8">
               <div className="size-12 rounded-2xl bg-primary/10 flex items-center justify-center">
                 <Phone className="size-6 text-primary" />
               </div>
               <div>
                 <h2 className="text-[22px] font-semibold text-foreground">Phone number</h2>
-                <p className="text-[14px] text-muted-foreground">We'll send you a verification code</p>
+                <p className="text-[14px] text-muted-foreground">We&apos;ll send you a verification code</p>
               </div>
             </div>
 
             <form onSubmit={handleSubmit} noValidate>
-              <div className="flex items-center gap-3 bg-white border border-border rounded-xl px-5 py-4 focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/20 transition-all">
+              <div className="flex items-center gap-3 bg-background border border-border rounded-2xl px-5 py-4 shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/20 transition-all">
                 <span className="text-[15px] text-foreground font-medium shrink-0">+975-</span>
                 <input
                   type="tel"
@@ -85,7 +88,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading || phone.length < 10}
-                className="btn btn-primary btn-block h-14 text-[16px] font-semibold rounded-xl mt-8"
+                className="btn btn-primary btn-block h-14 text-[16px] font-semibold rounded-2xl mt-8 shadow-sm"
               >
                 {loading ? (
                   <><Loader2 className="size-5 animate-spin" /> Sending code...</>
@@ -97,7 +100,7 @@ export default function LoginPage() {
 
             <div className="mt-6 text-center">
               <p className="text-[14px] text-muted-foreground">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link href="/register/role" className="text-primary font-medium hover:underline">
                   Create one now
                 </Link>

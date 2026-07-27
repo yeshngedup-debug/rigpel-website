@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, User, Phone, CreditCard, Loader2, Search, Briefcase } from "lucide-react";
+import { ArrowRight, ArrowLeft, User, Loader2, Search, Briefcase } from "lucide-react";
 import { usePageTitle } from "@/hooks/use-page-title";
 
 const ROLE_LABELS = { worker: { name: "Worker", icon: Search, desc: "Find part-time jobs" }, client: { name: "Employer", icon: Briefcase, desc: "Post jobs and hire" } };
@@ -11,7 +11,10 @@ const ROLE_LABELS = { worker: { name: "Worker", icon: Search, desc: "Find part-t
 export default function RegisterDetailsPage() {
   usePageTitle("Complete Registration");
   const router = useRouter();
-  const [role, setRole] = useState<string | null>(null);
+  const [role] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return localStorage.getItem("rigpel_role");
+  });
   const [loading, setLoading] = useState(false);
   const [phoneRaw, setPhoneRaw] = useState("77-");
   const [form, setForm] = useState({
@@ -21,10 +24,10 @@ export default function RegisterDetailsPage() {
   });
 
   useEffect(() => {
-    const stored = localStorage.getItem("rigpel_role");
-    if (!stored) { router.replace("/register/role"); return; }
-    setRole(stored);
-  }, [router]);
+    if (!role) {
+      router.replace("/register/role");
+    }
+  }, [role, router]);
 
   const update = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm({ ...form, [field]: e.target.value });
