@@ -43,34 +43,40 @@ export default function ModerationPage() {
         ))}
       </div>
 
-      <div className="bg-white rounded-2xl border border-border overflow-hidden">
-        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-background border-b border-border text-[13px] font-medium text-muted-foreground uppercase tracking-wider">
-          <div className="col-span-3">Job</div><div className="col-span-2">Employer</div><div className="col-span-2">Posted</div><div className="col-span-1">Status</div><div className="col-span-4">Actions</div>
-        </div>
-        <div className="divide-y divide-border">
-          {filtered.map((job) => {
-            const cfg = statusConfig[job.status];
-            return (
-              <div key={job.id} className="grid md:grid-cols-12 gap-4 px-6 py-5 items-center">
-                <div className="col-span-3"><p className="text-[15px] font-medium text-foreground">{job.title}</p></div>
-                <div className="col-span-2"><p className="text-[14px] text-muted-foreground">{job.employer}</p></div>
-                <div className="col-span-2"><p className="text-[14px] text-muted-foreground">{job.posted}</p></div>
-                <div className="col-span-1"><span className={`inline-block px-3 py-1 rounded-full text-[12px] font-medium capitalize ${cfg.color} ${cfg.bg}`}>{job.status}</span></div>
-                <div className="col-span-4 flex items-center gap-2">
-                  {job.status === "pending" || job.status === "flagged" ? (
-                    <>
-                      <button onClick={() => updateStatus(job.id, "approved")} className="flex items-center gap-1.5 px-4 py-2 bg-[#34C759] text-white rounded-xl text-[13px] font-medium hover:opacity-90 press-effect"><Check className="size-4" /> Approve</button>
-                      <button onClick={() => updateStatus(job.id, "rejected")} className="flex items-center gap-1.5 px-4 py-2 bg-[#FF3B30] text-white rounded-xl text-[13px] font-medium hover:opacity-90 press-effect"><X className="size-4" /> Reject</button>
-                      {job.status === "flagged" && <button className="p-2 text-muted-foreground hover:text-destructive"><Eye className="size-4" /></button>}
-                    </>
-                  ) : (
-                    <span className="text-[13px] text-muted-foreground">No actions needed</span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      <div className="overflow-x-auto rounded-2xl border border-border">
+        <table className="table">
+          <thead>
+            <tr className="bg-background text-[13px] font-medium text-muted-foreground uppercase tracking-wider">
+              <th>Job</th><th>Employer</th><th>Posted</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((job) => {
+              const cfg = statusConfig[job.status];
+              return (
+                <tr key={job.id} className="hover:bg-background/50 transition-colors">
+                  <td><p className="text-[15px] font-medium text-foreground">{job.title}</p></td>
+                  <td><p className="text-[14px] text-muted-foreground">{job.employer}</p></td>
+                  <td><p className="text-[14px] text-muted-foreground">{job.posted}</p></td>
+                  <td><span className={`inline-block px-3 py-1 rounded-full text-[12px] font-medium capitalize ${cfg.color} ${cfg.bg}`}>{job.status}</span></td>
+                  <td>
+                    <div className="flex items-center gap-2">
+                      {job.status === "pending" || job.status === "flagged" ? (
+                        <>
+                          <button onClick={() => updateStatus(job.id, "approved")} className="btn btn-success btn-sm text-white gap-1.5"><Check className="size-4" /> Approve</button>
+                          <button onClick={() => updateStatus(job.id, "rejected")} className="btn btn-error btn-sm text-white gap-1.5"><X className="size-4" /> Reject</button>
+                          {job.status === "flagged" && <button className="btn btn-ghost btn-sm"><Eye className="size-4" /></button>}
+                        </>
+                      ) : (
+                        <span className="text-[13px] text-muted-foreground">No actions needed</span>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );

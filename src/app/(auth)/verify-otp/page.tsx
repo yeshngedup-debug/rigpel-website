@@ -67,27 +67,28 @@ export default function VerifyOTPPage() {
           </div>
 
           <form onSubmit={handleSubmit}>
-            <div className="flex items-center justify-center gap-3 mb-10" onPaste={handlePaste}>
+            <label className="otp otp-lg flex items-center justify-center gap-2 mb-10" onPaste={handlePaste}>
               {otp.map((digit, i) => (
                 <input
                   key={i}
                   ref={(el) => { inputRefs.current[i] = el; }}
                   type="text"
                   inputMode="numeric"
+                  pattern="\d"
                   value={digit}
                   onChange={(e) => handleChange(i, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(i, e)}
-                  className="w-14 h-16 text-center text-[24px] font-semibold bg-background border border-border rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all"
+                  className="text-center text-[24px] font-semibold"
                   maxLength={1}
                   autoFocus={i === 0}
                 />
               ))}
-            </div>
+            </label>
 
             <button
               type="submit"
               disabled={loading || otp.some((d) => !d)}
-              className="w-full py-4 px-6 bg-primary text-white rounded-xl font-semibold text-[16px] hover:opacity-90 transition-opacity disabled:opacity-50 press-effect flex items-center justify-center gap-2"
+              className="btn btn-primary btn-block text-[16px] font-semibold h-14 rounded-xl"
             >
               {loading ? (
                 <><Loader2 className="size-5 animate-spin" /> Verifying...</>

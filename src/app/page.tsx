@@ -1,17 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Search, Shield, Star, Briefcase, CheckCircle2 } from "lucide-react";
-
-const QUOTES = [
-  {
-    id: 1,
-    dzongkha: "འབྲུག་གི་མ་འོངས་པ།",
-    title: "A Lifeline for Our Future",
-    text: "This project is not merely an infrastructure development. It is a People's Project. It is a nation-building effort, a lifeline for Bhutan—for our economy, our security, our sovereignty, and ultimately, our future.",
-    category: "VISION",
-    gradient: "from-primary to-[#5856D6]",
-  },
-];
+import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
+import { LandingHeroAnimation } from "./LandingHeroAnimation";
+import { LandingSpotlightCards } from "./LandingSpotlightCards";
 
 export default function LandingPage() {
   return (
@@ -27,17 +19,18 @@ export default function LandingPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
         </div>
+        <ParticlesBackground count={60} color="rgba(255, 255, 255, 0.3)" />
 
         <div className="relative z-10 flex flex-col h-full">
           <header className="h-16 flex items-center justify-between px-8 max-w-[1440px] mx-auto w-full">
             <span className="text-[17px] font-bold tracking-[0.15em] text-white">RIGPEL</span>
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-4">
               <Link href="/login" className="text-[14px] text-white/70 hover:text-white transition-colors min-h-[44px] inline-flex items-center">
                 Sign In
               </Link>
               <Link
                 href="/register/role"
-                className="text-[14px] font-medium bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors"
+                className="btn btn-sm text-[14px] font-medium bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm rounded-full"
               >
                 Get Started
               </Link>
@@ -49,11 +42,7 @@ export default function LandingPage() {
               <span className="inline-block backdrop-blur-sm text-white text-[12px] font-semibold tracking-[0.15em] px-5 py-2 rounded-full border border-white/20 bg-gradient-to-r from-primary to-[#5856D6] mb-8">
                 BHUTAN'S JOB MARKETPLACE
               </span>
-              <h1 className="text-white text-[48px] md:text-[72px] font-bold tracking-[-0.03em] leading-[1.05] mb-6">
-                Find work. Hire help.
-                <br />
-                <span className="text-primary/90">For Bhutan.</span>
-              </h1>
+              <LandingHeroAnimation />
               <p className="text-white/70 text-[19px] md:text-[21px] leading-[1.6] max-w-[700px] mx-auto mb-10">
                 The trusted platform connecting Bhutanese workers with part-time jobs.
                 Verified profiles, direct payments, zero commission.
@@ -61,14 +50,16 @@ export default function LandingPage() {
               <div className="flex items-center justify-center gap-4">
                 <Link
                   href="/register/role"
-                  className="inline-flex items-center gap-3 text-white px-8 py-4 rounded-full text-[16px] font-semibold bg-gradient-to-r from-primary to-[#5856D6] shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:opacity-90 transition-all press-effect"
+                  className="btn btn-lg text-[16px] font-semibold bg-gradient-to-r from-primary to-[#5856D6] text-white border-none shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 rounded-full px-8"
                 >
-                  <span>Get Started</span>
-                  <ArrowRight className="size-5" />
+                  <span className="flex items-center gap-3">
+                    Get Started
+                    <ArrowRight className="size-5" />
+                  </span>
                 </Link>
                 <Link
                   href="/login"
-                  className="inline-flex items-center gap-2 text-white/80 px-8 py-4 rounded-full text-[16px] font-medium border border-white/20 hover:bg-white/10 transition-colors"
+                  className="btn btn-lg text-[16px] font-medium bg-transparent text-white/80 border border-white/20 hover:bg-white/10 rounded-full px-8"
                 >
                   Sign In
                 </Link>
@@ -107,21 +98,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: Search, title: "Browse or Post", desc: "Workers find gigs, employers post jobs. Free to browse.", gradient: "from-primary to-[#5856D6]" },
-              { icon: Star, title: "Review & Select", desc: "Employers review worker profiles, ratings, and completed jobs.", gradient: "from-[#FF9500] to-destructive" },
-              { icon: Shield, title: "Work & Get Paid", desc: "Direct payout via mBoB/bank QR. No commission, no middleman.", gradient: "from-[#34C759] to-[#30D158]" },
-            ].map((step, i) => (
-              <div key={i} className="bg-white rounded-[24px] p-10 border border-border card-lift">
-                <div className={`size-14 rounded-[16px] flex items-center justify-center mb-6 bg-gradient-to-br ${step.gradient} text-white shadow-lg`}>
-                  <step.icon className="size-7" />
-                </div>
-                <h3 className="text-[22px] font-semibold text-foreground">{step.title}</h3>
-                <p className="text-[17px] text-muted-foreground mt-3 leading-[1.5]">{step.desc}</p>
-              </div>
-            ))}
-          </div>
+          <LandingSpotlightCards />
         </div>
       </section>
 
@@ -152,7 +129,7 @@ export default function LandingPage() {
                   { title: "Shop Assistant", company: "Norling Mall", skills: ["Customer Service", "Sales"] },
                   { title: "Construction Worker", company: "BuildCo", skills: ["Labor", "Teamwork"] },
                 ].map((job, i) => (
-                  <div key={i} className={`bg-white rounded-[20px] p-6 border border-border ${i < 2 ? "" : ""}`}>
+                  <div key={i} className="bg-white rounded-[20px] p-6 border border-border">
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="text-[17px] font-semibold text-foreground">{job.title}</h4>
@@ -186,10 +163,12 @@ export default function LandingPage() {
           <div className="mt-12">
             <Link
               href="/register/role"
-              className="inline-flex items-center gap-3 text-white px-8 py-4 rounded-full text-[16px] font-semibold bg-gradient-to-r from-primary to-[#5856D6] shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:opacity-90 transition-all press-effect"
+              className="btn btn-lg text-[16px] font-semibold bg-gradient-to-r from-primary to-[#5856D6] text-white border-none shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 rounded-full px-8"
             >
-              <span>Create Free Account</span>
-              <ArrowRight className="size-5" />
+              <span className="flex items-center gap-3">
+                Create Free Account
+                <ArrowRight className="size-5" />
+              </span>
             </Link>
           </div>
         </div>
